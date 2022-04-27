@@ -14,7 +14,7 @@ namespace ChatApp_LLAMIDO.Droid
     [Activity(Theme = "@style/Theme.Splash",
             MainLauncher = true,
             NoHistory =true,
-            Icon = "@drawable/pink")]
+            Icon = "@mipmap/ic_launcher")]
 
     public class SplashActivity : Activity
     {
