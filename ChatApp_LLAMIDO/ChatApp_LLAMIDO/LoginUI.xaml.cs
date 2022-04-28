@@ -16,6 +16,7 @@ namespace ChatApp_LLAMIDO
         public LoginUI()
         {
             InitializeComponent();
+            
         }
        
         private void Button_Clicked(object sender, EventArgs e)
@@ -35,9 +36,46 @@ namespace ChatApp_LLAMIDO
             Navigation.PushAsync(new RegisterPage());
         }
         
-        void Handle_Clicked(object sender, System.EventArgs e)
+       // void Handle_Clicked(object sender, System.EventArgs e)
+        //{
+        //    entry.Focus();
+        //}
+
+        public static readonly BindableProperty TextProperty =
+            BindableProperty.Create(nameof(Text), typeof(string), typeof(LoginUI), null);
+
+        public string Text
         {
-            entry.Focus();
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
+
+        public static readonly BindableProperty PlaceholderProperty =
+            BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(LoginUI), null);
+
+        public string Placeholder
+        {
+            get { return (string)GetValue(PlaceholderProperty); }
+            set { SetValue(PlaceholderProperty, value); }
+        }
+
+        public static readonly BindableProperty PlaceholderColorProperty =
+            BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(LoginUI), Color.Blue);
+
+        public Color PlaceholderColor
+        {
+            get { return (Color)GetValue(PlaceholderColorProperty); }
+            set { SetValue(PlaceholderColorProperty, value); }
+        }
+
+        public static readonly BindableProperty BorderColorProperty =
+            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(LoginUI), Color.Blue);
+
+        public Color BorderColor
+        {
+            get { return (Color)GetValue(BorderColorProperty); }
+            set { SetValue(BorderColorProperty, value); }
+        }
+
     }
 }

@@ -3,21 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatApp_LLAMIDO.LoginUI"
              xmlns:local="clr-namespace:ChatApp_LLAMIDO"
-             BackgroundColor="AntiqueWhite">
+              xmlns:controls="clr-namespace:ChatApp_LLAMIDO;assembly=ChatApp_LLAMIDO"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="this"
+           >
              
     <ContentPage.Content>
 
-        <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-       
-            <Image Source="mybaby" WidthRequest="180" HeightRequest="180"></Image>
+        <StackLayout  Padding="10,0,10,0">
 
-            <Entry x:Name="entry" Keyboard="Numeric" Placeholder="Hello"  TextColor="White" PlaceholderColor="Gray"></Entry>
+            <Grid >
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    
+                </Grid.ColumnDefinitions>
 
-            <Button Text="Show" Clicked="Handle_Clicked" HeightRequest="50" WidthRequest="100" />
 
-            <Entry x:Name="txtUsername"  Placeholder="Username" Keyboard="Text" TextColor="White" PlaceholderColor="Gray"></Entry>
-            <Grid>
-                <Entry x:Name="txtPassword" 
+
+                <Image Grid.Row="0" Source="" HeightRequest="393" ></Image>
+
+                <!--<Entry Grid.Row="1"  x:Name="entry" Keyboard="Numeric" Placeholder="Hello"  TextColor="White" PlaceholderColor="Gray"></Entry>
+
+                <Button Grid.Row="2" Text="Show" Clicked="Handle_Clicked" HeightRequest="50" WidthRequest="100" />-->
+
+
+                <local:BorderlessEntry  Grid.Row="1" x:Name="txtUsername"  Placeholder="Username" Keyboard="Text" TextColor="White" PlaceholderColor="Gray"></local:BorderlessEntry>
+
+                <Entry Grid.Row="2"
+                    
+                    x:Name="txtPassword" 
                    Placeholder="Password" 
                    Keyboard="Default" 
                    IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, 
@@ -25,7 +48,8 @@
                    TextColor="White" 
                    PlaceholderColor="Gray"></Entry>
 
-                <ImageButton VerticalOptions="End" 
+                <ImageButton Grid.Row="2"
+                         VerticalOptions="End" 
                          Margin="0,0,10,10"
                          HeightRequest="30"
                          HorizontalOptions="End"
@@ -39,29 +63,30 @@
                         </EventTrigger>
                     </ImageButton.Triggers>
                 </ImageButton>
+
+                <Button Grid.Row="3"
+                        VerticalOptions="Center"
+                        Text="Login"
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        BorderColor="ForestGreen"
+                        BorderWidth="1.5"
+                        CornerRadius="50"
+                        Clicked="Button_Clicked"></Button>
+
+                <Label Grid.Row="4" HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Don't have an account?" TextColor="Gray"/>
+                            <Span Text="Register" TextColor="Gray" FontAttributes="Bold" TextDecorations="Underline"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
-            <Button 
-                VerticalOptions="Center"
-                Text="Login"
-                TextColor="White"
-                BackgroundColor="Transparent"
-                BorderColor="ForestGreen"
-                BorderWidth="1.5"
-                CornerRadius="50"
-                Clicked="Button_Clicked"
-                ></Button>
-            
-            <Label HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Don't have an account?" TextColor="Gray"/>
-                        <Span Text="Register" TextColor="Gray" FontAttributes="Bold" TextDecorations="Underline"/>
-                    </FormattedString>
-                </Label.FormattedText>
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                </Label.GestureRecognizers>
-            </Label>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
