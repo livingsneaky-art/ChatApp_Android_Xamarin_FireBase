@@ -8,6 +8,8 @@
             <Label Text="Welcome to Home Page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Entry x:Name="txtUsername"  Placeholder="Username" Keyboard="Text" TextColor="White" PlaceholderColor="Gray"></Entry>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
