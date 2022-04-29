@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp_LLAMIDO.LoginUI"
-             xmlns:local="clr-namespace:ChatApp_LLAMIDO;assembly=ChatApp_LLAMIDO"
-             NavigationPage.HasNavigationBar="False">
-             
+             x:Class="ChatApp_LLAMIDO.CreateAccount"
+             xmlns:local="clr-namespace:ChatApp_LLAMIDO;assembly=ChatApp_LLAMIDO">
     <ContentPage.Content>
-
         <StackLayout Padding="10,0,10,0" >
 
             <Grid >
@@ -21,13 +18,14 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    
+
                 </Grid.ColumnDefinitions>
 
 
 
-                <Image HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=250'}"
-                       Aspect="AspectFill"
+                <Image 
+                    HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=150'}"
+                      
                        Grid.Row="0" Source="images" >
                 </Image>
 
@@ -40,17 +38,53 @@
                     Grid.Row="1" 
                     x:Name="txtEmail"  
                     Placeholder="Username" 
+                    Keyboard="Text" 
+                    TextColor="Black" 
+                    PlaceholderColor="Gray"
+                    Focused="StarCall">
+                </local:BorderlessEntry>
+
+                <local:BorderlessEntry  
+                    Grid.Row="2" 
+                  
+                    Placeholder="Email" 
                     Keyboard="Email" 
                     TextColor="Black" 
                     PlaceholderColor="Gray"
                     Focused="StarCall">
                 </local:BorderlessEntry>
 
+                <local:BorderlessEntry  
+                    Grid.Row="3" 
+                 
+                    Placeholder="Password" 
+                    Keyboard="Default"
+                    IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger2}, 
+                        Path=HidePassword}" 
+                    TextColor="Black" 
+                    PlaceholderColor="Gray"
+                    Focused="StarCall">
+                </local:BorderlessEntry>
+                
+                <ImageButton Grid.Row="3"
+                         Margin="0,10,10,10"
+                         HeightRequest="30"
+                         HorizontalOptions="End"
+                         Source="ic_eyeHide">
+
+                    <ImageButton.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <local:ShowPasswordTriggerAction ShowIcon="ic_eyeShow"
+                                                             HideIcon="ic_eyeHide"
+                                                             x:Name="ShowPasswordActualTrigger2"/>
+                        </EventTrigger>
+                    </ImageButton.Triggers>
+                </ImageButton>
 
                 <local:BorderlessEntry 
-                        Grid.Row="2"
+                        Grid.Row="4"
                         x:Name="txtPassword" 
-                        Placeholder="Password" 
+                        Placeholder="Confirm Password" 
                         Keyboard="Default" 
                         IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, 
                         Path=HidePassword}" 
@@ -58,7 +92,7 @@
                        Focused="StarCall"
                         PlaceholderColor="Gray"></local:BorderlessEntry>
 
-                <ImageButton Grid.Row="2"
+                <ImageButton Grid.Row="4"
                          Margin="0,10,10,10"
                          HeightRequest="30"
                          HorizontalOptions="End"
@@ -73,19 +107,9 @@
                     </ImageButton.Triggers>
                 </ImageButton>
 
-                <Label Padding="0,15,0,0" Grid.Row="3" HorizontalOptions="End">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Forgot Password" TextColor="Gray"/>
-                            <!--<Span Text="Register" TextColor="Gray" FontAttributes="Bold" TextDecorations="Underline"/>-->
-                        </FormattedString>
-                    </Label.FormattedText>
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
+               
 
-                <Button Grid.Row="4"
+                <Button Grid.Row="5"
                         VerticalOptions="Center"
                         Text="Login"
                         TextColor="Black"
@@ -94,34 +118,20 @@
                         BorderWidth="1.5"
                         CornerRadius="50"
                         Clicked="Button_Login"></Button>
-                
-                <Button Grid.Row="5"
+
+                <Button Grid.Row="6"
                         VerticalOptions="Center"
-                        Text="Create an account"
+                        Text="Sign in to your account"
                         TextColor="Black"
                         BackgroundColor="LightGray"
                         BorderColor="ForestGreen"
                         BorderWidth="1.5"
-                        CornerRadius="50"
-                        Clicked="Button_CreateAccount"></Button>
+                        CornerRadius="50"></Button>
 
-                <BoxView 
-                    Grid.Row="6"
-                   Color="LightGray"
-                   Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0, 7, 160, 30'}">
-                </BoxView>
-                    
-                <Label Grid.Row="6" 
-                       Text="or" 
-                       TextColor="Black"
-                       HorizontalOptions="Center">
-                </Label>
-                <BoxView 
-                   Grid.Row="6" 
-                   Color="LightGray"
-                   Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=160, 7, 0, 30'}">
-                </BoxView>
-                
+
+
+               
+
                 <ImageButton 
                     Grid.Row="7"
                     Source="googlee" 
@@ -132,12 +142,12 @@
 
                 <Label Grid.Row="7" 
                        Text="Sign in with Google"
-                       Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=25,1,170,20'}"
+                       Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=25,5,170,25'}"
                        TextColor="Black"
                        Padding="5,0,0,0"
                        BackgroundColor="WhiteSmoke">
                 </Label>
-                
+
                 <ImageButton 
                     Grid.Row="7"
                     Source="facebook" 
@@ -145,10 +155,10 @@
                    WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}" 
                     Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=160,0,120,20'}">
                 </ImageButton>
-                
+
                 <Label Grid.Row="7" 
                        Text="Sign in with Facebook"
-                       Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=183,0,0,20'}"
+                       Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=183,5,0,25'}"
                        TextColor="Black"
                        Padding="5,0,0,0"
                        BackgroundColor="WhiteSmoke">
@@ -173,7 +183,7 @@
                         Margin="0,20,200,30"
                    
                         Clicked="Button_CreateAccount"></Button>-->
-                
+
 
             </Grid>
 

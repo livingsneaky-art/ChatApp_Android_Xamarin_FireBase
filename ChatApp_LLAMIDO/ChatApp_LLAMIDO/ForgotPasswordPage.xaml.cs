@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp_LLAMIDO
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegisterPage : ContentPage
+    public partial class ForgotPasswordPage : ContentPage
     {
-        public RegisterPage()
+        public ForgotPasswordPage()
         {
             InitializeComponent();
         }

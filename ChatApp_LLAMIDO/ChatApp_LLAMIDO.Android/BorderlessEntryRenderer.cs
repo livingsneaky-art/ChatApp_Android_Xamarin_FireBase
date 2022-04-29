@@ -20,6 +20,7 @@ namespace ChatApp_LLAMIDO.Droid
 {
     public class BorderlessEntryRenderer : EntryRenderer
     {
+        Drawable defaultTextBackgroundColor;
         public BorderlessEntryRenderer(Context context) : base(context)
         {
         }
@@ -27,27 +28,40 @@ namespace ChatApp_LLAMIDO.Droid
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
-
-            //Configure native control (TextBox)
-            //if (Control != null)
-            if (e.OldElement == null)
+            defaultTextBackgroundColor = Control.Background;
+            MessagingCenter.Subscribe<object, bool>(this, "Hi", (sender, arg) =>
             {
-                //Control.SetBackgroundColor(Android.Graphics.Color.White);
+                Console.WriteLine("Hi , I have received this");
+                if (arg)
+                {
+                    //Control.SetBackgroundColor(Android.Graphics.Color.White);
+                    //Control.LayerType.BorderColor = UIColor.Red.CGColor;
 
-                //Control.LayerType.BorderColor = UIColor.Red.CGColor;
-                var nativeEditText = (global::Android.Widget.EditText)Control;
-                var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
-                shape.Paint.Color = Xamarin.Forms.Color.Red.ToAndroid();
-                shape.Paint.SetStyle(Paint.Style.Stroke);
-                nativeEditText.Background = shape;
+                    //var nativeEditText = (global::Android.Widget.EditText)Control;
+                    //var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
+                    //shape.Paint.Color = Xamarin.Forms.Color.Black.ToAndroid();
+                    //shape.Paint.SetStyle(Paint.Style.Stroke);
+                    //nativeEditText.Background = shape;
+                    var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
+                    shape.Paint.Color = Xamarin.Forms.Color.Red.ToAndroid();
+                    shape.Paint.SetStyle(Paint.Style.Stroke);
+                    Control.Background = shape;
 
-            }
+                }
+                else
+                {
+                    var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
+                    shape.Paint.Color = Xamarin.Forms.Color.Black.ToAndroid();
+                    shape.Paint.SetStyle(Paint.Style.Stroke);
+                    Control.Background = shape;
+                }
+            });
 
-            // Configure Entry properties
-            if (e.NewElement != null)
-            {
+                // Configure Entry properties
+                if (e.NewElement != null)
+                {
 
-            }
+                }
         }
     }
 }
