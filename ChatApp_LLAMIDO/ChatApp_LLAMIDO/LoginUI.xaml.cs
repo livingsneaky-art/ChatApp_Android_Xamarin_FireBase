@@ -33,22 +33,22 @@ namespace ChatApp_LLAMIDO
             }
             if(txtEmail.Text != "ryanllamido@gmail.com" && txtPassword.Text == "123")
             {
-                DisplayAlert("Error..", "Email not verified. Sent another verification email.", "Ok");
+                DisplayAlert("Error..", "Email not verified. Sent another verification email.", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
             else if(txtEmail.Text == "ryanllamido@gmail.com" && txtPassword.Text != "123")
             {
-                DisplayAlert("Error..", "Incorrect Password", "Ok");
+                DisplayAlert("Error..", "Incorrect Password", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
             else if (txtEmail.Text == null || txtPassword.Text == null)
             {
-                DisplayAlert("Error..", "Missing Fields", "Ok");
+                DisplayAlert("Error..", "Missing Fields", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
             else if (txtEmail.Text != "ryanllamido@gmail.com" && txtPassword.Text != "123")
             {
-                DisplayAlert("Error..", "Incorrect Email and Password", "Ok");
+                DisplayAlert("Error..", "Incorrect Email and Password", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
         }
@@ -67,6 +67,26 @@ namespace ChatApp_LLAMIDO
         {
             MessagingCenter.Send<object, bool>(this, "Hi", false);
         }
-     
+
+        private void ImageButton_Google(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new GoogleLogin());
+        }
+
+        private void TapGestureRecognizer_Google(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new GoogleLogin());
+        }
+
+        private void ImageButton_Facebook(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FacebookLogin());
+        }
+        private void TapGestureRecognizer_Facebook(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FacebookLogin());
+        }
+
+        
     }
 }

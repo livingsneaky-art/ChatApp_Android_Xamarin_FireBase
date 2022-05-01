@@ -21,37 +21,84 @@ namespace ChatApp_LLAMIDO
             Navigation.PushAsync(new ForgotPasswordPage());
         }
 
-        private void Button_Login(object sender, EventArgs e)
+        private void Button_ValidationBehavior(object sender, EventArgs e)
         {
-            if (txtEmail.Text == "ryanllamido@gmail.com" && txtPassword.Text == "123")
+            if ((string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))&& (string.IsNullOrWhiteSpace(txtPassword.Text) || string.IsNullOrWhiteSpace(txtConfirmPassword.Text)))
             {
-                Navigation.PushAsync(new HomePage());
-            }
-            if (txtEmail.Text != "ryanllamido@gmail.com" && txtPassword.Text == "123")
-            {
-                DisplayAlert("Error..", "Email not verified. Sent another verification email.", "Ok");
+                DisplayAlert("Error..", "Missing Fields", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
-            else if (txtEmail.Text == "ryanllamido@gmail.com" && txtPassword.Text != "123")
+            else if ((string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text)) && (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtConfirmPassword.Text)))
             {
-                DisplayAlert("Error..", "Incorrect Password", "Ok");
+                DisplayAlert("Error..", "Missing Fields", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
-            else if (txtEmail.Text == null || txtPassword.Text == null)
+
+            else if (string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                DisplayAlert("Error..", "Missing Fields", "Ok");
+                DisplayAlert("Error..", "Missing Field", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
-            else if (txtEmail.Text != "ryanllamido@gmail.com" && txtPassword.Text != "123")
+
+            else if (string.IsNullOrWhiteSpace(txtPassword.Text) || string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
             {
-                DisplayAlert("Error..", "Incorrect Email and Password", "Ok");
+                DisplayAlert("Error..", "Password cant be empty.", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
+
+            else if (!myEmailValidation.IsValid)
+            {
+                DisplayAlert("Error..", "Email is Incorrect.", "OKAY");
+                MessagingCenter.Send<object, bool>(this, "Hi", true);
+            }
+            else if (!myUsernameValidation.IsValid)
+            {
+                DisplayAlert("Error..", "Username is Incorrect. Maximum 8 ", "OKAY");
+                MessagingCenter.Send<object, bool>(this, "Hi", true);
+            }
+            else if ((myPasswordValidation.IsValid == myConfirmPasswordValidation.IsValid)== !txtPassword.Text.Equals(txtConfirmPassword.Text))
+            {
+                DisplayAlert("Error..", "Confirmation Password is Incorrect.", "OKAY");
+                MessagingCenter.Send<object, bool>(this, "Hi", true);
+            }
+
+            else
+            {
+                DisplayAlert("Success", "Sign up successful. Verification email sent.", "OKAY");
+                Navigation.PushAsync(new LoginUI());
+            }
+            
         }
+
+
 
         private void StarCall(object sender, FocusEventArgs e)
         {
             MessagingCenter.Send<object, bool>(this, "Hi", false);
+        }
+        
+       private void ImageButton_Google(object sender, EventArgs e)
+       {
+           Navigation.PushAsync(new GoogleLogin());
+       }
+
+       private void TapGestureRecognizer_Google(object sender, EventArgs e)
+       {
+           Navigation.PushAsync(new GoogleLogin());
+       }
+
+       private void ImageButton_Facebook(object sender, EventArgs e)
+       {
+           Navigation.PushAsync(new FacebookLogin());
+       }
+       private void TapGestureRecognizer_Facebook(object sender, EventArgs e)
+       {
+           Navigation.PushAsync(new FacebookLogin());
+       }
+
+        private void Button_SignIn(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new LoginUI());
         }
     }
 }

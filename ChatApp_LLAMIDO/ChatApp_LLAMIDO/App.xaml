@@ -12,7 +12,7 @@
                 <Setter Property="Margin" Value="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=5,0,5,0'}"/>
                 <Setter Property="Keyboard" Value="Text"/>
                 <Setter Property="ReturnType" Value="Next"/>
-                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TextColor" Value="Red"/>
                 <Setter Property="PlaceholderColor" Value="Gray"/>
                 <Setter Property="FontFamily" Value="Roboto-Thin.ttf#Roboto Thin"/>
             </Style>

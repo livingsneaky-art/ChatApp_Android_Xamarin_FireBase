@@ -2,7 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatApp_LLAMIDO.CreateAccount"
-             xmlns:local="clr-namespace:ChatApp_LLAMIDO;assembly=ChatApp_LLAMIDO">
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:ChatApp_LLAMIDO;assembly=ChatApp_LLAMIDO"
+             NavigationPage.HasNavigationBar="False">
+    
+    <!--<ContentPage.Resources>
+            <ResourceDictionary>
+                <Style x:Key="InvalidStyle" TargetType="Entry">
+                    <Setter Property="TextColor" Value="Red"/>
+                </Style>
+            </ResourceDictionary>
+        </ContentPage.Resources>
+    //to study
+    //InvalidStyle="{StaticResource InvalidStyle}"
+    -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="invertBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" >
 
@@ -24,39 +43,38 @@
 
 
                 <Image 
-                    HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=150'}"
-                      
-                       Grid.Row="0" Source="images" >
+                    HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=200'}"
+                    Grid.Row="0" Source="images" >
                 </Image>
-
-                <!--<Entry Grid.Row="1"  x:Name="entry" Keyboard="Numeric" Placeholder="Hello"  TextColor="White" PlaceholderColor="Gray"></Entry>
-
-                <Button Grid.Row="2" Text="Show" Clicked="Handle_Clicked" HeightRequest="50" WidthRequest="100" />-->
-
-
+                
                 <local:BorderlessEntry  
                     Grid.Row="1" 
-                    x:Name="txtEmail"  
+                    x:Name="txtUsername"  
                     Placeholder="Username" 
                     Keyboard="Text" 
                     TextColor="Black" 
                     PlaceholderColor="Gray"
                     Focused="StarCall">
+                    <Entry.Behaviors>
+                        <xct:TextValidationBehavior MaximumLength="8" x:Name="myUsernameValidation" />
+                    </Entry.Behaviors>
                 </local:BorderlessEntry>
-
-                <local:BorderlessEntry  
+                
+                <local:BorderlessEntry
                     Grid.Row="2" 
-                  
-                    Placeholder="Email" 
-                    Keyboard="Email" 
-                    TextColor="Black" 
+                    x:Name="txtEmail"
+                    Placeholder="Email"
+                    TextColor="Black"
                     PlaceholderColor="Gray"
                     Focused="StarCall">
+                    <Entry.Behaviors>
+                        <xct:EmailValidationBehavior x:Name="myEmailValidation" />
+                    </Entry.Behaviors>
                 </local:BorderlessEntry>
-
+              
                 <local:BorderlessEntry  
                     Grid.Row="3" 
-                 
+                    x:Name="txtPassword"  
                     Placeholder="Password" 
                     Keyboard="Default"
                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger2}, 
@@ -64,7 +82,11 @@
                     TextColor="Black" 
                     PlaceholderColor="Gray"
                     Focused="StarCall">
+                    <Entry.Behaviors>
+                        <xct:RequiredStringValidationBehavior  RequiredString="{Binding PasswordValid}" x:Name="myPasswordValidation"/>
+                    </Entry.Behaviors>
                 </local:BorderlessEntry>
+                
                 
                 <ImageButton Grid.Row="3"
                          Margin="0,10,10,10"
@@ -83,14 +105,18 @@
 
                 <local:BorderlessEntry 
                         Grid.Row="4"
-                        x:Name="txtPassword" 
+                        x:Name="txtConfirmPassword" 
                         Placeholder="Confirm Password" 
                         Keyboard="Default" 
                         IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, 
                         Path=HidePassword}" 
                         TextColor="Black" 
-                       Focused="StarCall"
-                        PlaceholderColor="Gray"></local:BorderlessEntry>
+                        Focused="StarCall"
+                        PlaceholderColor="Gray">
+                        <Entry.Behaviors>
+                            <xct:RequiredStringValidationBehavior RequiredString="{Binding PasswordValid}" x:Name="myConfirmPasswordValidation"/>
+                        </Entry.Behaviors>
+                </local:BorderlessEntry>
 
                 <ImageButton Grid.Row="4"
                          Margin="0,10,10,10"
@@ -111,13 +137,14 @@
 
                 <Button Grid.Row="5"
                         VerticalOptions="Center"
-                        Text="Login"
+                        Text="Sign up"
                         TextColor="Black"
                         BackgroundColor="LightGreen"
                         BorderColor="ForestGreen"
                         BorderWidth="1.5"
                         CornerRadius="50"
-                        Clicked="Button_Login"></Button>
+                        Clicked="Button_ValidationBehavior">
+                </Button>
 
                 <Button Grid.Row="6"
                         VerticalOptions="Center"
@@ -126,18 +153,16 @@
                         BackgroundColor="LightGray"
                         BorderColor="ForestGreen"
                         BorderWidth="1.5"
-                        CornerRadius="50"></Button>
-
-
-
-               
-
+                        CornerRadius="50"
+                        Clicked="Button_SignIn"></Button>
+                
                 <ImageButton 
                     Grid.Row="7"
                     Source="googlee" 
-                   HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
-                   WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}"
-                   Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0,0,280,20'}">
+                    HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
+                    WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}"
+                    Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0,0,280,20'}"
+                    Clicked="ImageButton_Google">
                 </ImageButton>
 
                 <Label Grid.Row="7" 
@@ -146,14 +171,18 @@
                        TextColor="Black"
                        Padding="5,0,0,0"
                        BackgroundColor="WhiteSmoke">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Google"/>
+                    </Label.GestureRecognizers>
                 </Label>
 
                 <ImageButton 
                     Grid.Row="7"
                     Source="facebook" 
-                   HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
-                   WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}" 
-                    Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=160,0,120,20'}">
+                    HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
+                    WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}" 
+                    Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=160,0,120,20'}"
+                    Clicked="ImageButton_Facebook">
                 </ImageButton>
 
                 <Label Grid.Row="7" 
@@ -162,29 +191,11 @@
                        TextColor="Black"
                        Padding="5,0,0,0"
                        BackgroundColor="WhiteSmoke">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Facebook"/>
+                    </Label.GestureRecognizers>
                 </Label>
-                <!-- <Button Grid.Row="7" 
-                      
-                      
-                        Text="mytext"
-                        Image="googlee" 
-                        HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}" 
-                        WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=250'}"/>
-                
-               <Button Grid.Row="7"
-                        Grid.RowSpan="2"
-                        Text="Create an account"
-                        TextColor="Black"
-                        BackgroundColor="white"
-                        BorderColor="ForestGreen"
-                        BorderWidth="1"
-                        B
-                       
-                        Margin="0,20,200,30"
-                   
-                        Clicked="Button_CreateAccount"></Button>-->
-
-
+               
             </Grid>
 
         </StackLayout>

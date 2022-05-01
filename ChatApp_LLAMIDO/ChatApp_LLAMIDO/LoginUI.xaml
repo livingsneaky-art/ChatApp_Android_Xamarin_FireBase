@@ -125,9 +125,10 @@
                 <ImageButton 
                     Grid.Row="7"
                     Source="googlee" 
-                   HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
-                   WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}"
-                   Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0,0,280,20'}">
+                    HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
+                    WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}"
+                    Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0,0,280,20'}"
+                    Clicked="ImageButton_Google">
                 </ImageButton>
 
                 <Label Grid.Row="7" 
@@ -136,14 +137,18 @@
                        TextColor="Black"
                        Padding="5,0,0,0"
                        BackgroundColor="WhiteSmoke">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Google"/>
+                    </Label.GestureRecognizers>
                 </Label>
                 
                 <ImageButton 
                     Grid.Row="7"
                     Source="facebook" 
-                   HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
-                   WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}" 
-                    Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=160,0,120,20'}">
+                    HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=50'}"
+                    WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=50'}" 
+                    Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=160,0,120,20'}"
+                    Clicked="ImageButton_Facebook">
                 </ImageButton>
                 
                 <Label Grid.Row="7" 
@@ -152,6 +157,9 @@
                        TextColor="Black"
                        Padding="5,0,0,0"
                        BackgroundColor="WhiteSmoke">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Facebook"/>
+                    </Label.GestureRecognizers>
                 </Label>
                 <!-- <Button Grid.Row="7" 
                       
