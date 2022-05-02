@@ -10,18 +10,17 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp_LLAMIDO
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : TabbedPage
+    public partial class ProfileTab : ContentPage
     {
-        public HomePage()
+        public ProfileTab()
         {
             InitializeComponent();
         }
 
-        protected override bool OnBackButtonPressed()
+        private void Button_SignOut(object sender, EventArgs e)
         {
-                //await Navigation.PopAsync(true);
-                base.OnBackButtonPressed();
-                return true;
+            Navigation.PushAsync(new LoginUI());
         }
+        
     }
 }

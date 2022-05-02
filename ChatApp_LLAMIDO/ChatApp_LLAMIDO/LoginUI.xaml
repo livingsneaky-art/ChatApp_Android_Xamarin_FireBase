@@ -31,15 +31,10 @@
                        Grid.Row="0" Source="images" >
                 </Image>
 
-                <!--<Entry Grid.Row="1"  x:Name="entry" Keyboard="Numeric" Placeholder="Hello"  TextColor="White" PlaceholderColor="Gray"></Entry>
-
-                <Button Grid.Row="2" Text="Show" Clicked="Handle_Clicked" HeightRequest="50" WidthRequest="100" />-->
-
-
                 <local:BorderlessEntry  
                     Grid.Row="1" 
                     x:Name="txtEmail"  
-                    Placeholder="Username" 
+                    Placeholder="Email" 
                     Keyboard="Email" 
                     TextColor="Black" 
                     PlaceholderColor="Gray"
@@ -55,7 +50,7 @@
                         IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, 
                         Path=HidePassword}" 
                         TextColor="Black" 
-                       Focused="StarCall"
+                        Focused="StarCall"
                         PlaceholderColor="Gray"></local:BorderlessEntry>
 
                 <ImageButton Grid.Row="2"
@@ -77,7 +72,6 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Forgot Password" TextColor="Gray"/>
-                            <!--<Span Text="Register" TextColor="Gray" FontAttributes="Bold" TextDecorations="Underline"/>-->
                         </FormattedString>
                     </Label.FormattedText>
                     <Label.GestureRecognizers>
@@ -150,7 +144,7 @@
                     Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=160,0,120,20'}"
                     Clicked="ImageButton_Facebook">
                 </ImageButton>
-                
+
                 <Label Grid.Row="7" 
                        Text="Sign in with Facebook"
                        Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=183,0,0,20'}"
@@ -161,28 +155,6 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Facebook"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <!-- <Button Grid.Row="7" 
-                      
-                      
-                        Text="mytext"
-                        Image="googlee" 
-                        HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}" 
-                        WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=250'}"/>
-                
-               <Button Grid.Row="7"
-                        Grid.RowSpan="2"
-                        Text="Create an account"
-                        TextColor="Black"
-                        BackgroundColor="white"
-                        BorderColor="ForestGreen"
-                        BorderWidth="1"
-                        B
-                       
-                        Margin="0,20,200,30"
-                   
-                        Clicked="Button_CreateAccount"></Button>-->
-                
-
             </Grid>
 
         </StackLayout>

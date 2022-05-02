@@ -27,23 +27,29 @@ namespace ChatApp_LLAMIDO
 
         private void Button_Login(object sender, EventArgs e)
         {
-            if(txtEmail.Text=="ryanllamido@gmail.com" && txtPassword.Text == "123")
+            if (string.IsNullOrWhiteSpace(txtEmail.Text) && string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                Navigation.PushAsync(new HomePage());
+                DisplayAlert("Error..", "Missing Fields", "OKAY");
+                MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
-            if(txtEmail.Text != "ryanllamido@gmail.com" && txtPassword.Text == "123")
+            else if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                DisplayAlert("Error..", "Missing Field", "OKAY");
+                MessagingCenter.Send<object, bool>(this, "Hi", true);
+            }
+            else if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                DisplayAlert("Error..", "Missing Field", "OKAY");
+                MessagingCenter.Send<object, bool>(this, "Hi", true);
+            }
+            else if (txtEmail.Text != "ryanllamido@gmail.com" && txtPassword.Text == "123")
             {
                 DisplayAlert("Error..", "Email not verified. Sent another verification email.", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
-            else if(txtEmail.Text == "ryanllamido@gmail.com" && txtPassword.Text != "123")
+            else if (txtEmail.Text == "ryanllamido@gmail.com" && txtPassword.Text != "123")
             {
                 DisplayAlert("Error..", "Incorrect Password", "OKAY");
-                MessagingCenter.Send<object, bool>(this, "Hi", true);
-            }
-            else if (txtEmail.Text == null || txtPassword.Text == null)
-            {
-                DisplayAlert("Error..", "Missing Fields", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
             else if (txtEmail.Text != "ryanllamido@gmail.com" && txtPassword.Text != "123")
@@ -51,13 +57,13 @@ namespace ChatApp_LLAMIDO
                 DisplayAlert("Error..", "Incorrect Email and Password", "OKAY");
                 MessagingCenter.Send<object, bool>(this, "Hi", true);
             }
+            else if (txtEmail.Text=="ryanllamido@gmail.com" && txtPassword.Text == "123")
+            {
+                Navigation.PushAsync(new HomePage());
+            }
         }
 
-       // void Handle_Clicked(object sender, System.EventArgs e)
-        //{
-        //    entry.Focus();
-        //}
-
+       
         private void Button_CreateAccount(object sender, EventArgs e)
         {
             Navigation.PushAsync(new CreateAccount());
@@ -86,7 +92,12 @@ namespace ChatApp_LLAMIDO
         {
             Navigation.PushAsync(new FacebookLogin());
         }
+        protected override bool OnBackButtonPressed()
+        {
+            //await Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
+            return true;
+        }
 
-        
     }
 }

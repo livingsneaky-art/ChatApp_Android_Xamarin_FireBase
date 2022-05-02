@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp_LLAMIDO.ConversationLayout"
+             xmlns:local="clr-namespace:ChatApp_LLAMIDO"
+             xmlns:sfChat="clr-namespace:Syncfusion.XForms.Chat;assembly=Syncfusion.SfChat.XForms">
+
+
+        <ContentPage.BindingContext>
+            <local:ViewModel/>
+        </ContentPage.BindingContext>
+
+        <ContentPage.Content>
+            <sfChat:SfChat x:Name="sfChat"
+                           Messages="{Binding Messages}"
+                           CurrentUser="{Binding CurrentUser}" />
+        </ContentPage.Content>
+  
+</ContentPage>

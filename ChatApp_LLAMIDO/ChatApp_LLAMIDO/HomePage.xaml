@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp_LLAMIDO.HomePage">
+            xmlns:local="clr-namespace:ChatApp_LLAMIDO"
+            x:Class="ChatApp_LLAMIDO.HomePage"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="LightBlue"
+            NavigationPage.HasNavigationBar="False">
 
-    <ContentPage>
-        <Label Text="WElcome to Home Page!"/>
-    </ContentPage>
-    
+    <local:ChatTab Title="ChatTab" IconImageSource="ChatIcon"/>
+    <local:ProfileTab Title="ProfileTab" IconImageSource="person"/>
 </TabbedPage>

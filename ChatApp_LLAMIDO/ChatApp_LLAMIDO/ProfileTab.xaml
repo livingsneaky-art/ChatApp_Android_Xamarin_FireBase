@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp_LLAMIDO.ProfileTab"
+             xmlns:image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    <ContentPage.Content>
+        <StackLayout Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0,50,0,20'}" >
+            <Grid Margin="50">
+                <Grid.RowDefinitions >
+                    <RowDefinition  Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                </Grid.ColumnDefinitions>
+                <image:CircleImage Grid.Row="0"
+                               Source="mybaby"
+                               Aspect="AspectFill"
+                               WidthRequest="150"
+                               HeightRequest="150"
+                               BorderColor="yellow"
+                               BorderThickness="2"></image:CircleImage>
+            
+
+            
+                
+                <Label Grid.Row="1" HorizontalOptions="Center" FontSize="35" Text="Ryan"></Label>
+                <Label Grid.Row="2" HorizontalOptions="Center" FontSize="25" Text="ryanllamido@gmail.com"></Label>
+                <Button 
+                        Grid.Row="3"
+                        VerticalOptions="Center"
+                        Margin="10,0,10,0"
+                        Text="Sign out"
+                        TextColor="Black"
+                        BackgroundColor="LightGreen"
+                        BorderColor="ForestGreen"
+                        BorderWidth="1.5"
+                        CornerRadius="50"
+                        Clicked="Button_SignOut"></Button>
+            </Grid >
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

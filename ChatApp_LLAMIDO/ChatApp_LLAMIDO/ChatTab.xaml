@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp_LLAMIDO.ChatTab"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:ChatApp_LLAMIDO;assembly=ChatApp_LLAMIDO">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <!--<Grid Margin="10">
+                <Grid.RowDefinitions >
+                    <RowDefinition  Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                </Grid.ColumnDefinitions>
+
+                <local:BorderlessEntry
+                    Grid.Row="0" 
+                    x:Name="txtEmail"
+                    Placeholder="Search user email"
+                    TextColor="Black"
+                    PlaceholderColor="Gray"
+                    Keyboard="Email"
+                    Focused="StarCall">
+                    <Entry.Behaviors>
+                        <xct:EmailValidationBehavior x:Name="myEmailValidation" />
+                    </Entry.Behaviors>
+                </local:BorderlessEntry>
+
+                <Label Grid.Row="4" HorizontalTextAlignment="Center" Text="You have no contacts as of the moment."
+                   FontSize="25"  FontAttributes="Bold" 
+                 />
+            </Grid >-->
+
+            <SearchBar x:Name="ColorSearchBar"
+                       SearchButtonPressed="ColorSearchBar_SearchButtonPressed"
+                       TextChanged="ColorSearchBar_TextChanged"/>
+
+            <Grid>
+                <ListView x:Name="ColorsListView" 
+                          ItemTapped="ColorsListView_ItemTapped"/>
+                <ListView x:Name="SuggestionsListView"
+                          ItemTapped="SuggestionsListView_ItemTapped"
+                          BackgroundColor="LightGoldenrodYellow"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
